@@ -1,2 +1,2 @@
-"""Init file for pyfujitsu"""
-name = "pyfujitsu"
+"""Init file for pyfujitseu"""
+name = "pyfujitseu"
