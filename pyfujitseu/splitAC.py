@@ -367,14 +367,17 @@ class splitAC:
 
     ##Translate the operation mode to descriptive values and reverse
     def _operation_mode_translate(self,operation_mode):
+        
         DICT_OPERATION_MODE = {
             "off": 0,
+            "unknown" : 1,
             "auto" : 2,
             "cool" : 3,
             "dry" : 4,
             "fan_only" : 5,
             "heat" : 6,
             0 : "off",
+            1 : "unknown",
             2 : "auto",
             3 : "cool",
             4 : "dry",
