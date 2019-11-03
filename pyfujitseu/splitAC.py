@@ -1,5 +1,7 @@
 from .api import Api as api
 
+#version 0.9.2.7
+
 class splitAC:
     def __init__(self,dsn,api):
         self._dsn = dsn
@@ -136,7 +138,11 @@ class splitAC:
             2: 'Unknown', 
             3: 'Swing' 
         }
-        return SWING_LIST_DICT[self.af_vertical_direction['value']]
+        try:
+            return SWING_LIST_DICT[self.af_vertical_direction['value']]
+        except TypeError:
+            return SWING_LIST_DICT[2]
+        
 
     ## Direction Settings
             ## Vertical
