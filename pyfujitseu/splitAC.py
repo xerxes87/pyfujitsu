@@ -370,18 +370,18 @@ class splitAC:
         
         DICT_OPERATION_MODE = {
             "off": 0,
-            "heat" : 1,
+            "unknown" : 1,
             "auto" : 2,
             "cool" : 3,
             "dry" : 4,
             "fan_only" : 5,
-            "unknown" : 6,
+            "heat" : 6,
             0 : "off",
-            1 : "heat",
+            1 : "unknown",
             2 : "auto",
             3 : "cool",
             4 : "dry",
             5 : "fan_only",
-            6 : "unknown"
+            6 : "heat"
         }
         return DICT_OPERATION_MODE[operation_mode]
