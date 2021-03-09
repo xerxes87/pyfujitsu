@@ -46,12 +46,14 @@ class Api:
         self._API_GET_DEVICES_URL =  API_BASE_URL + "devices.json"
 
         self._ACCESS_TOKEN_FILE = tokenpath
+        self._ACCESS_TOKEN_STR = None
     
     def _get_devices(self,access_token=None):
         if not self._check_token_validity(access_token):
 
           ## Token invalid requesting authentication
             access_token = self._authenticate()
+            
         response = self._call_api("get",self._API_GET_DEVICES_URL,access_token=access_token)
         return response.json()
 
@@ -117,7 +119,8 @@ class Api:
 
         f = open(self._ACCESS_TOKEN_FILE, "w")
         f.write(response.text) 
-
+        
+        self._ACCESS_TOKEN_STR = access_token 
         
         return access_token
     
