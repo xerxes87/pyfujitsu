@@ -1,21 +1,25 @@
-import setuptools
+from setuptools import setup
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+__version__ = "0.10.0.0"
 
-setuptools.setup(
+setup(
     name="pyfujitseu",
-    version="0.9.3.2",
-    author="Mehdi Modarressi",
-    author_email="Luckposht@gmail.com",
+    py_modules=["pyfujitseu"],
+    version=__version__,
     description="Fujitsu Airconditioners",
     long_description="Python library to control Fujitsu General Airconditioners on AylaNetworks IoT platform",
+    author="Mehdi Modarressi, Fabio Mauro",
+    author_email="Luckposht@gmail.com",
     url="https://github.com/xerxes87/pyfujitseu",
-    packages=setuptools.find_packages(),
-    install_requires=['requests','certifi','chardet','idna','urllib3'] ,
+    download_url="https://github.com/xerxes87/pyfujitseu",
+    license="MIT License",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    keywords=["ialarmXR", "antifurtocasa365", "alarm"],
+    packages=["pyfujitseu"],
+    include_package_data=True,
+    install_requires=["requests", "certifi", "chardet", "idna", "urllib3"],
 )
