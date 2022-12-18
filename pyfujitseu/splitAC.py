@@ -358,6 +358,18 @@ class splitAC:
     def device_name(self,properties):
         self._device_name = self._get_prop_from_json('device_name',properties)
         
+    @property
+    def op_status(self):
+        return self._get_prop_from_json('op_status',self._properties)
+    
+    def get_op_status_desc(self):
+        DICT_OP_MODE = {
+            0: 'Normal',
+            16777216: "Defrost"
+        }
+        status = self.op_status["value"]
+        return DICT_OP_MODE[status] if status in DICT_OP_MODE else f"Unknown {status}"
+        
     ## Get a property history
     def _get_device_property_history(self,propertyCode):
         propertyHistory = self._api._get_device_property(propertyCode)
