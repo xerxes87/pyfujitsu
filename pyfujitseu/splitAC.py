@@ -383,11 +383,11 @@ class splitAC:
 
     @property
     def op_status(self):
-        return self._get_prop_from_json('op_status', self._properties)
+        return self._get_prop_from_json("op_status", self._properties)
     
     def get_op_status_desc(self):
         DICT_OP_MODE = {
-            0: 'Normal',
+            0: "Normal",
             16777216: "Defrost"
         }
         status = self.op_status["value"]
