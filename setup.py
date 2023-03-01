@@ -3,13 +3,13 @@ from setuptools import setup
 __version__ = "0.10.0.0"
 
 setup(
-    name="pyfujitseu",
-    py_modules=["pyfujitseu"],
+    name="pyfujitsugeneral",
+    py_modules=["pyfujitsugeneral"],
     version=__version__,
-    description="Fujitsu Airconditioners",
-    long_description="Python Library for interacting with Fujitsu General split AC API",
-    author="Mehdi Modarressi, Fabio Mauro",
-    author_email="Luckposht@gmail.com",
+    description="Python Library for interacting with Fujitsu General split air conditioners API",
+    long_description="Python Library for interacting with Fujitsu General split air conditioners API",
+    author="Fabio Mauro, Mehdi Modarressi",
+    author_email="bigmoby.pymeianlike@gmail.com",
     url="https://github.com/bigmoby/pyfujitseu",
     download_url="https://github.com/bigmoby/pyfujitseu",
     license="MIT License",
@@ -18,8 +18,8 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    keywords=["Fujitsu Airconditioners"],
-    packages=["pyfujitseu"],
+    keywords=["Fujitsu General air conditioners"],
+    packages=["pyfujitsugeneral"],
     include_package_data=True,
     install_requires=["requests", "certifi", "chardet", "idna", "urllib3"],
 )
