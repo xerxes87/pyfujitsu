@@ -2,10 +2,9 @@ import json
 import logging
 import os
 import time
-from typing import Any, Optional
-from aiohttp.web import Response
-
 import requests
+from typing import Any, Optional
+from requests import Response
 
 HEADER_CONTENT_TYPE = "Content-Type"
 HEADER_VALUE_CONTENT_TYPE = "application/json"
