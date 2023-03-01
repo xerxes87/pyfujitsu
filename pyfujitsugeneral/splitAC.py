@@ -228,8 +228,9 @@ class SplitAC:
             raise Exception("Wrong usage of the method!")
 
     @property  # property to get temperature in degree C
-    def adjust_temperature_degree(self):
-        return round((self._adjust_temperature["value"] / 10), 1)
+    def adjust_temperature_degree(self) -> float:
+        data: float = round((self._adjust_temperature["value"] / 10), 1)
+        return data
 
     @property  # property returns temperature dict in 10 times of degree C
     def adjust_temperature(self):
@@ -377,7 +378,7 @@ class SplitAC:
             raise Exception("Wrong usage of the method!")
 
     @property
-    def device_name(self):
+    def device_name(self) -> dict[str, Any]:
         return self._device_name
 
     @device_name.setter
