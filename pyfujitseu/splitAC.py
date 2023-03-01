@@ -1,8 +1,8 @@
 from .api import Api
 
 
-class splitAC:
-    def __init__(self, dsn, api_param: Api):
+class SplitAC:
+    def __init__(self, dsn: str, api_param: Api) -> None:
         self._dsn = dsn
         self._api = api_param  # Setting the API object
 
@@ -21,7 +21,7 @@ class splitAC:
         self.powerful_mode = self._properties
         self.min_heat = self._properties  # TODO Missing device setting method
         self.outdoor_low_noise = self._properties  # TODO Missing device setting method
-        self.operation_mode = self._properties
+        self.operation_mode = self._properties  # type: ignore
         self.adjust_temperature = self._properties
 
     # Method for getting new (refreshing) properties values
@@ -38,7 +38,7 @@ class splitAC:
         self.powerful_mode = self._properties
         self.min_heat = self._properties
         self.outdoor_low_noise = self._properties
-        self.operation_mode = self._properties
+        self.operation_mode = self._properties  # type: ignore
 
     # To Turn on the device get the last operation mode using property history method
     # Find the last not 'OFF'/'0' O.M.
@@ -51,11 +51,11 @@ class splitAC:
                 last_operation_mode = int(datapoint["datapoint"]["value"])
                 break
 
-        self.operation_mode = last_operation_mode
+        self.operation_mode = last_operation_mode  # type: ignore
         self.refresh_properties()
 
     def turnOff(self):
-        self.operation_mode = 0
+        self.operation_mode = 0  # type: ignore
         self.refresh_properties()
 
     # Economy mode setting
@@ -188,7 +188,7 @@ class splitAC:
     def changeOperationMode(self, operationMode):
         if not isinstance(operationMode, int):
             operationMode = self._operation_mode_translate(operationMode)
-        self.operation_mode = operationMode
+        self.operation_mode = operationMode  # type: ignore
 
     # Class properties:
 
@@ -212,7 +212,7 @@ class splitAC:
     def operation_mode_desc(self):
         return self._operation_mode_translate(self.operation_mode["value"])
 
-    @operation_mode.setter
+    @operation_mode.setter  # type: ignore
     def operation_mode(self, properties):
         if isinstance(properties, (list, tuple)):
             self._operation_mode = self._get_prop_from_json(
@@ -222,7 +222,7 @@ class splitAC:
             self._api._set_device_property(self.operation_mode["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property  # property to get temperature in degree C
     def adjust_temperature_degree(self):
@@ -242,7 +242,7 @@ class splitAC:
             self._api._set_device_property(self.adjust_temperature["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def outdoor_low_noise(self):
@@ -258,7 +258,7 @@ class splitAC:
             self._api._set_device_property(self.outdoor_low_noise["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def powerful_mode(self):
@@ -272,7 +272,7 @@ class splitAC:
             self._api._set_device_property(self.powerful_mode["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def fan_speed(self):
@@ -286,7 +286,7 @@ class splitAC:
             self._api._set_device_property(self.fan_speed["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def economy_mode(self):
@@ -300,7 +300,7 @@ class splitAC:
             self._api._set_device_property(self.economy_mode["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def af_horizontal_direction(self):
@@ -320,7 +320,7 @@ class splitAC:
             self.horizontal_swing_off()  # If direction set then swing will be turned OFF
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method or direction out of range!!")
+            raise Exception("Wrong usage of the method or direction out of range!")
 
     @property
     def af_horizontal_swing(self):
@@ -336,7 +336,7 @@ class splitAC:
             self._api._set_device_property(self.af_horizontal_swing["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def af_vertical_direction(self):
@@ -355,7 +355,7 @@ class splitAC:
             # self.vertical_swing_off() ##If direction set then swing will be turned OFF
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method or direction out of range!!")
+            raise Exception("Wrong usage of the method or direction out of range!")
 
     @property
     def af_vertical_swing(self):
@@ -371,7 +371,7 @@ class splitAC:
             self._api._set_device_property(self.af_vertical_swing["key"], properties)
             self.refresh_properties()
         else:
-            raise Exception("Wrong usage of the method!!")
+            raise Exception("Wrong usage of the method!")
 
     @property
     def device_name(self):

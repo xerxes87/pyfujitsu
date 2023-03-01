@@ -2,6 +2,8 @@ import json
 import logging
 import os
 import time
+from typing import Any, Optional
+from aiohttp.web import Response
 
 import requests
 
@@ -13,7 +15,7 @@ HEADER_AUTHORIZATION = "Authorization"
 _LOGGER = logging.getLogger(__name__)
 
 
-def _api_headers(access_token=None):
+def _api_headers(access_token: str | None = None) -> dict[str, str]:
     headers = {HEADER_CONTENT_TYPE: HEADER_VALUE_CONTENT_TYPE}
 
     if access_token:
@@ -23,7 +25,13 @@ def _api_headers(access_token=None):
 
 
 class Api:
-    def __init__(self, username, password, region="us", tokenpath="token.txt"):
+    def __init__(
+        self,
+        username: str,
+        password: str,
+        region: str = "us",
+        tokenpath: str = "token.txt",
+    ):
         self.username = username
         self.password = password
         self.region = region
@@ -179,13 +187,13 @@ class Api:
         else:
             return self._authenticate()
 
-    def _call_api(self, method, url, access_token=None, **kwargs):
-        payload = ""
+    def _call_api(
+        self, method: str, url: str, access_token: str | None = None, **kwargs: Any
+    ) -> Response:
 
         if "propertyValue" in kwargs:
             propertyValue = kwargs.get("propertyValue")
             kwargs["json"] = '{"datapoint": {"value": ' + str(propertyValue) + " } }"
-        payload = kwargs.get("json")
 
         if "headers" not in kwargs:
             if access_token:
@@ -194,11 +202,14 @@ class Api:
                 kwargs["headers"] = _api_headers()
 
         if method.lower() == "post":
+            payload = kwargs.get("json")
             if not payload:
                 raise Exception("Post method needs a request body!")
 
         response = requests.request(
             method, url, data=kwargs.get("json"), headers=kwargs.get("headers")
         )
+
         response.raise_for_status()
+
         return response
