@@ -1,5 +1,5 @@
 from .api import Api
-from typing import Any, Optional
+from typing import Any
 
 
 class SplitAC:
@@ -212,7 +212,7 @@ class SplitAC:
         return self._operation_mode
 
     @property
-    def operation_mode_desc(self):
+    def operation_mode_desc(self) -> Any:
         return self._operation_mode_translate(self.operation_mode["value"])
 
     @operation_mode.setter  # type: ignore
@@ -393,7 +393,7 @@ class SplitAC:
         return propertyHistory
 
     # Translate the operation mode to descriptive values and reverse
-    def _operation_mode_translate(self, operation_mode):
+    def _operation_mode_translate(self, operation_mode: Any) -> Any:
 
         DICT_OPERATION_MODE = {
             "off": 0,
