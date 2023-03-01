@@ -1,4 +1,5 @@
 from .api import Api
+from typing import Any, Optional
 
 
 class SplitAC:
@@ -194,13 +195,17 @@ class SplitAC:
     def dsn(self):
         return self._dsn
 
-    def _get_prop_from_json(self, propertyName, properties):
+    def _get_prop_from_json(
+        self, propertyName: str, properties: dict[str, Any]
+    ) -> dict[str, Any]:
+        data = {}
         for property in properties:
-            if property["property"]["name"] == propertyName:
-                return {
-                    "value": property["property"]["value"],
-                    "key": property["property"]["key"],
+            if property["property"]["name"] == propertyName:  # type: ignore
+                data = {
+                    "value": property["property"]["value"],  # type: ignore
+                    "key": property["property"]["key"],  # type: ignore
                 }
+        return data
 
     @property
     def operation_mode(self):
@@ -212,7 +217,7 @@ class SplitAC:
 
     @operation_mode.setter  # type: ignore
     def operation_mode(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._operation_mode = self._get_prop_from_json(
                 "operation_mode", properties
             )
@@ -232,7 +237,7 @@ class SplitAC:
 
     @adjust_temperature.setter
     def adjust_temperature(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._adjust_temperature = self._get_prop_from_json(
                 "adjust_temperature", properties
             )
@@ -248,7 +253,7 @@ class SplitAC:
 
     @outdoor_low_noise.setter
     def outdoor_low_noise(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._outdoor_low_noise = self._get_prop_from_json(
                 "outdoor_low_noise", properties
             )
@@ -264,7 +269,7 @@ class SplitAC:
 
     @powerful_mode.setter
     def powerful_mode(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._powerful_mode = self._get_prop_from_json("powerful_mode", properties)
         elif isinstance(properties, int):
             self._api._set_device_property(self.powerful_mode["key"], properties)
@@ -278,7 +283,7 @@ class SplitAC:
 
     @fan_speed.setter
     def fan_speed(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._fan_speed = self._get_prop_from_json("fan_speed", properties)
         elif isinstance(properties, int):
             self._api._set_device_property(self.fan_speed["key"], properties)
@@ -292,7 +297,7 @@ class SplitAC:
 
     @economy_mode.setter
     def economy_mode(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._economy_mode = self._get_prop_from_json("economy_mode", properties)
         elif isinstance(properties, int):
             self._api._set_device_property(self.economy_mode["key"], properties)
@@ -307,7 +312,7 @@ class SplitAC:
     @af_horizontal_direction.setter
     def af_horizontal_direction(self, properties):
 
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._af_horizontal_direction = self._get_prop_from_json(
                 "af_horizontal_direction", properties
             )
@@ -326,7 +331,7 @@ class SplitAC:
 
     @af_horizontal_swing.setter
     def af_horizontal_swing(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._af_horizontal_swing = self._get_prop_from_json(
                 "af_horizontal_swing", properties
             )
@@ -342,7 +347,7 @@ class SplitAC:
 
     @af_vertical_direction.setter
     def af_vertical_direction(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._af_vertical_direction = self._get_prop_from_json(
                 "af_vertical_move_step1", properties
             )
@@ -361,7 +366,7 @@ class SplitAC:
 
     @af_vertical_swing.setter
     def af_vertical_swing(self, properties):
-        if isinstance(properties, (list, tuple)):
+        if isinstance(properties, dict):
             self._af_vertical_swing = self._get_prop_from_json(
                 "af_vertical_swing", properties
             )

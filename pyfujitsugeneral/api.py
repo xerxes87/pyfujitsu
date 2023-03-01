@@ -94,7 +94,7 @@ class Api:
             devices_dsn.append(device["device"]["dsn"])
         return devices_dsn
 
-    def _get_device_properties(self, dsn):
+    def _get_device_properties(self, dsn: str) -> dict[str, Any]:
         access_token = self._read_token()
         if not self._check_token_validity(access_token):
             access_token = self._authenticate()
@@ -104,7 +104,8 @@ class Api:
             self._API_GET_PROPERTIES_URL.format(DSN=dsn),
             access_token=access_token,
         )
-        return response.json()
+        data: dict[str, Any] = response.json()
+        return data
 
     def _set_device_property(self, propertyCode, value):
         access_token = self._read_token()
