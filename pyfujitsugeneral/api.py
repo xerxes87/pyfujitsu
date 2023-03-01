@@ -3,7 +3,7 @@ import logging
 import os
 import time
 import requests
-from typing import Any, Optional
+from typing import Any
 from requests import Response
 
 HEADER_CONTENT_TYPE = "Content-Type"
