@@ -10,8 +10,8 @@ setup(
     long_description="Python Library for interacting with Fujitsu General split air conditioners API",
     author="Fabio Mauro, Mehdi Modarressi",
     author_email="bigmoby.pymeianlike@gmail.com",
-    url="https://github.com/bigmoby/pyfujitseu",
-    download_url="https://github.com/bigmoby/pyfujitseu",
+    url="https://github.com/bigmoby/pyfujitsugeneral",
+    download_url="https://github.com/bigmoby/pyfujitsugeneral",
     license="MIT License",
     classifiers=[
         "Programming Language :: Python :: 3",
