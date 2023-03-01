@@ -136,8 +136,8 @@ class SplitAC:
             return SWING_LIST_DICT[2]
 
     # Direction Settings
-    # Vertical
 
+    # Vertical
     def vertical_swing_on(self):
         self.af_vertical_swing = 1
 
@@ -152,8 +152,7 @@ class SplitAC:
         else:
             raise Exception("Direction out of range 1 - 7!")
 
-            # Horizontal
-
+    # Horizontal
     def horizontal_swing_on(self):
         self.af_vertical_swing = 1
 
@@ -169,7 +168,6 @@ class SplitAC:
             raise Exception("Direction out of range 1 - 7!")
 
     # Temperature setting
-
     def changeTemperature(self, newTemperature):
         # set temperature for degree C
         if not isinstance(newTemperature, int) and not isinstance(
