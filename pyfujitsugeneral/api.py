@@ -36,32 +36,19 @@ class Api:
         self.region = region
 
         if region == "eu":
-            self._SIGNIN_BODY = '{"user":{"email":"%s",'
-            '"password":"%s",'
-            '"application":{"app_id":"FGLair-eu-id",'
-            '"app_secret":"FGLair-eu-gpFbVBRoiJ8E3QWJ-QRULLL3j3U"}}}'
+            self._SIGNIN_BODY = '{"user":{"email":"%s","password":"%s","application":{"app_id":"FGLair-eu-id","app_secret":"FGLair-eu-gpFbVBRoiJ8E3QWJ-QRULLL3j3U"}}}'
             self._API_GET_ACCESS_TOKEN_URL = (
                 "https://user-field-eu.aylanetworks.com/users/sign_in.json"
             )
             API_BASE_URL = "https://ads-field-eu.aylanetworks.com/apiv1/"
         elif region == "cn":
-            self._SIGNIN_BODY = '{"user":{"email":"%s",'
-            '"password":"%s",'
-            '"application":{"app_id":"FGLairField-cn-id",'
-            '"app_secret":"FGLairField-cn-zezg7Y60YpAvy3HPwxvWLnd4Oh4"}}}'
+            self._SIGNIN_BODY = '{"user":{"email":"%s","password":"%s","application":{"app_id":"FGLairField-cn-id","app_secret":"FGLairField-cn-zezg7Y60YpAvy3HPwxvWLnd4Oh4"}}}'
             self._API_GET_ACCESS_TOKEN_URL = (
                 "https://user-field.ayla.com.cn/users/sign_in.json"
             )
             API_BASE_URL = "https://ads-field.ayla.com.cn/apiv1/"
         else:
-            self._SIGNIN_BODY = '{"user": { '
-            '"email": "%s",'
-            '"application": { '
-            '"app_id": "CJIOSP-id", '
-            '"app_secret": "CJIOSP-Vb8MQL_lFiYQ7DKjN0eCFXznKZE" '
-            "}, "
-            '"password": "%s" '
-            "}}"
+            self._SIGNIN_BODY = '{\r\n    "user": {\r\n        "email": "%s",\r\n        "application": {\r\n            "app_id": "CJIOSP-id",\r\n            "app_secret": "CJIOSP-Vb8MQL_lFiYQ7DKjN0eCFXznKZE"\r\n        },\r\n        "password": "%s"\r\n    }\r\n}'
             self._API_GET_ACCESS_TOKEN_URL = (
                 "https://user-field.aylanetworks.com/users/sign_in.json"
             )
