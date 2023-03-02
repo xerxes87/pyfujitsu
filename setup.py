@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = "0.10.0.5"
+__version__ = "0.10.0.6"
 
 setup(
     name="pyfujitsugeneral",
