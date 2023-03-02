@@ -2,8 +2,9 @@ import json
 import logging
 import os
 import time
-import requests
 from typing import Any
+
+import requests
 from requests import Response
 
 HEADER_CONTENT_TYPE = "Content-Type"
@@ -65,7 +66,6 @@ class Api:
 
     def _get_devices(self, access_token=None):
         if not self._check_token_validity(access_token):
-
             # Token invalid requesting authentication
             access_token = self._authenticate()
 
@@ -74,7 +74,7 @@ class Api:
         )
         return response.json()
 
-    def get_devices_dsn(self, access_token=None):
+    def get_devices_dsn(self):
         devices = self._get_devices()
         devices_dsn = []
         for device in devices:
@@ -130,7 +130,6 @@ class Api:
         return True
 
     def _authenticate(self):
-
         response = self._call_api(
             "POST",
             self._API_GET_ACCESS_TOKEN_URL,

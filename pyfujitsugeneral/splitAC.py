@@ -195,7 +195,9 @@ class SplitAC:
     def dsn(self):
         return self._dsn
 
-    def _get_prop_from_json(self, propertyName: str, properties: Any) -> dict[str, Any]:
+    def _get_prop_from_json(
+        self, propertyName: str, properties: Any
+    ) -> dict[str, Any] | None:
         data = {}
         for property in properties:
             if property["property"]["name"] == propertyName:
@@ -226,8 +228,10 @@ class SplitAC:
             raise Exception("Wrong usage of the method!")
 
     @property  # property to get temperature in degree C
-    def adjust_temperature_degree(self) -> float:
-        data: float = round((self._adjust_temperature["value"] / 10), 1)
+    def adjust_temperature_degree(self) -> float | None:
+        data = None
+        if self._adjust_temperature is not None:
+            data = round((self._adjust_temperature["value"] / 10), 1)
         return data
 
     @property  # property returns temperature dict in 10 times of degree C
@@ -375,7 +379,7 @@ class SplitAC:
             raise Exception("Wrong usage of the method!")
 
     @property
-    def device_name(self) -> dict[str, Any]:
+    def device_name(self) -> dict[str, Any] | None:
         return self._device_name
 
     @device_name.setter
@@ -383,13 +387,19 @@ class SplitAC:
         self._device_name = self._get_prop_from_json("device_name", properties)
 
     @property
-    def op_status(self) -> dict[str, Any]:
+    def op_status(self) -> dict[str, Any] | None:
         return self._get_prop_from_json("op_status", self._properties)
 
-    def get_op_status_desc(self) -> str:
-        DICT_OP_MODE = {0: "Normal", 16777216: "Defrost"}
-        status = self.op_status["value"]
-        return DICT_OP_MODE[status] if status in DICT_OP_MODE else f"Unknown {status}"
+    def get_op_status_desc(self) -> str | None:
+        data = None
+        if self.op_status is not None:
+            DICT_OP_MODE = {0: "Normal", 16777216: "Defrost"}
+            status = self.op_status["value"]
+            data = (
+                DICT_OP_MODE[status] if status in DICT_OP_MODE else f"Unknown {status}"
+            )
+            return data
+        return data
 
     # Get a property history
     def _get_device_property_history(self, propertyCode):
