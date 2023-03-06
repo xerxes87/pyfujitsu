@@ -1,21 +1,25 @@
-import setuptools
+from setuptools import setup
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+__version__ = "1.0.0"
 
-setuptools.setup(
-    name="pyfujitseu",
-    version="0.9.3.2",
-    author="Mehdi Modarressi",
-    author_email="Luckposht@gmail.com",
-    description="Fujitsu Airconditioners",
-    long_description="Python library to control Fujitsu General Airconditioners on AylaNetworks IoT platform",
-    url="https://github.com/xerxes87/pyfujitseu",
-    packages=setuptools.find_packages(),
-    install_requires=['requests','certifi','chardet','idna','urllib3'] ,
+setup(
+    name="pyfujitsugeneral",
+    py_modules=["pyfujitsugeneral"],
+    version=__version__,
+    description="Python Library for interacting with Fujitsu General split air conditioners API",
+    long_description="Python Library for interacting with Fujitsu General split air conditioners API",
+    author="Fabio Mauro, Mehdi Modarressi",
+    author_email="bigmoby.pymeianlike@gmail.com",
+    url="https://github.com/bigmoby/pyfujitsugeneral",
+    download_url="https://github.com/bigmoby/pyfujitsugeneral",
+    license="MIT License",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    keywords=["Fujitsu General air conditioners"],
+    packages=["pyfujitsugeneral"],
+    include_package_data=True,
+    install_requires=["requests", "certifi", "chardet", "idna", "urllib3"],
 )
