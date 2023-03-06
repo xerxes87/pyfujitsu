@@ -1,0 +1,51 @@
+fail_fast: false
+
+repos:
+-   repo: https://github.com/ambv/black
+    rev: 22.3.0
+    hooks:
+    -   id: black
+-   repo: https://github.com/pycqa/isort
+    rev: 5.9.1
+    hooks:
+    -   id: isort
+        args: ["--profile", "black", "--filter-files"]
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: debug-statements
+    -   id: check-docstring-first
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: pretty-format-json
+        args: ["--autofix"]
+
+
+# flake8
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+    - id: flake8
+      args: # arguments to configure flake8
+        # making isort line length compatible with black
+        - "--max-line-length=88"
+        - "--max-complexity=18"
+        - "--select=B,C,E,F,W,T4,B9"
+
+        # these are errors that will be ignored by flake8
+        # check out their meaning here
+        # https://flake8.pycqa.org/en/latest/user/error-codes.html
+        - "--ignore=E203,E266,E501,W503,F403,F401,E402"
+
+
+#-  repo: https://github.com/pre-commit/mirrors-mypy
+#   rev: v0.902
+#   hooks:
+#   -    id: mypy
+#        exclude: ^tests/
+#        args: [--strict]
+#        language: python
+#        # use your preferred Python version
+#        language_version: python3.10
